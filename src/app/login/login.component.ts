@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RequestsService } from '../shared/requests.service';
 import { ApiConstants } from '../shared/app-constant';
 import { NotifyServiceService } from '../shared/notify-service.service';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,10 +19,15 @@ export class LoginComponent implements OnInit {
   constructor(
     private requests: RequestsService,
     private apiConstants: ApiConstants,
-    private notifyService: NotifyServiceService
+    private notifyService: NotifyServiceService,
+    private route: Router
   ) { }
 
   ngOnInit() {
+
+    if (localStorage.getItem('token')) {
+      alert('already logged in');
+    }
   }
 
   submit() {

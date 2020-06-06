@@ -11,7 +11,13 @@ import { RequestsService } from './shared/requests.service';
 import { ApiConstants } from './shared/app-constant';
 import { NotifyServiceService } from './shared/notify-service.service';
 import { SignupComponent } from './signup/signup.component';
+import { JwtModule } from '@auth0/angular-jwt';
 
+
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -26,7 +32,17 @@ import { SignupComponent } from './signup/signup.component';
     NgbPaginationModule,
     NgbAlertModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+        whitelistedDomains: ['localhost:9081'],
+        blacklistedRoutes: [
+          'http://localhost:9081/to-do/v1/login',
+          'http://localhost:9081/to-do/v1/sign-up'
+        ],
+      },
+    })
   ],
   providers: [RequestsService, ApiConstants, NgbAlertConfig, NotifyServiceService],
   bootstrap: [AppComponent]
