@@ -49,6 +49,24 @@ export class RequestsService {
     );
   }
 
+  deleteData(url: string): Observable<any> {
+    this.commonData.setIsUIBlocked(true);
+
+    const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Accept', 'application/json');
+    const options = { headers };
+
+    return this.http.delete(url, options).pipe(
+      map(res => {
+        this.commonData.setIsUIBlocked(false);
+        return res;
+      },
+        error => {
+          this.commonData.setIsUIBlocked(false);
+        }),
+      catchError((err) => this.handleError(err))
+    );
+  }
+
 
   handleError(error: HttpErrorResponse) {
     this.commonData.setIsUIBlocked(false);
