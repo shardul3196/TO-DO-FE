@@ -26,14 +26,14 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     if (localStorage.getItem('token')) {
-      alert('already logged in');
+      this.route.navigateByUrl('/core');
     }
   }
 
   submit() {
     if (this.userName == null || this.userName.trim() === '' ||
       this.password == null || this.password.trim() === '') {
-      this.notifyService.errorMessageByString('Username/ or Password cannot be empty.')
+      this.notifyService.errorMessageByString('Username/ or Password cannot be empty.');
       return false;
     }
 
@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('name', response.name);
         localStorage.setItem('token', response.token);
         localStorage.setItem('userName', response.userName);
+        this.route.navigateByUrl('/core');
       } else {
         this.notifyService.errorMessageByString('Please check your credentials.');
       }
