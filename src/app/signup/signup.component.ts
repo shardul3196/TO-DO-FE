@@ -33,7 +33,7 @@ export class SignupComponent implements OnInit {
     if (this.signUpObj.name == null || this.signUpObj.name.trim() === ''
       || this.signUpObj.userName == null || this.signUpObj.userName.trim() === ''
       || this.signUpObj.password == null || this.signUpObj.password.trim() === '') {
-      this.notifyService.errorMessageByString('Username/ or Password cannot be empty.')
+      this.notifyService.errorMessageByString('Username/ or Password cannot be empty.');
       return;
     }
 

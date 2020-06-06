@@ -3,15 +3,15 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbAlertModule, NgbPaginationModule, NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
+import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { RequestsService } from './shared/requests.service';
 import { ApiConstants } from './shared/app-constant';
 import { NotifyServiceService } from './shared/notify-service.service';
+import { RequestsService } from './shared/requests.service';
 import { SignupComponent } from './signup/signup.component';
-import { JwtModule } from '@auth0/angular-jwt';
+import { AuthGuardService } from './shared/auth-guard.service';
 
 
 
@@ -29,8 +29,6 @@ export function tokenGetter() {
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgbPaginationModule,
-    NgbAlertModule,
     FormsModule,
     HttpClientModule,
     JwtModule.forRoot({
@@ -44,7 +42,7 @@ export function tokenGetter() {
       },
     })
   ],
-  providers: [RequestsService, ApiConstants, NgbAlertConfig, NotifyServiceService],
+  providers: [RequestsService, ApiConstants, NotifyServiceService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
