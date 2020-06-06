@@ -1,0 +1,17 @@
+<div class="wrapper">
+    <div class="container-fluid text-center">
+        <h1>TO-DO</h1>
+    </div>
+    <div id="formContent">
+        <form #signupForm="ngForm" novalidate>
+            <input autocomplete="new-password" required [(ngModel)]="signUpObj.userName" type="text" class="mt-5" name="login" placeholder="Username">
+            <input autocomplete="new-password" required [(ngModel)]="signUpObj.password" type="password" class="" name="login" placeholder="Password">
+            <input autocomplete="new-password" required [(ngModel)]="signUpObj.name" type="text" class="" name="login" placeholder="Name">
+            <!-- <input autocomplete="new-password" required [(ngModel)]="signUpObj.email" type="text" class=""
+                name="login" placeholder="Email">
+            <input autocomplete="new-password" required [(ngModel)]="signUpObj.contact" type="text" class=""
+                name="login" placeholder="Contact"> -->
+            <input [disabled]="!signupForm.valid" type="button" (click)="submit()" class="" value="Log In">
+        </form>
+    </div>
+</div>
