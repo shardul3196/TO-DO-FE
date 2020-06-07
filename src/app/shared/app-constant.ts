@@ -7,4 +7,6 @@ export
     class ApiConstants {
     public LOGIN = SERVICE_URL + '/login';
     public SIGNUP = SERVICE_URL + '/sign-up';
+    public INIT_TASK = SERVICE_URL + '/init-task';
+    public SEARCH_TASK = SERVICE_URL + '/search-task';
 }

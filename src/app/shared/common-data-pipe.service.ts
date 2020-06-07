@@ -8,7 +8,7 @@ export class CommonDataPipeService {
 
   constructor() { }
 
-  private isUIBlocked = new BehaviorSubject<boolean>(null);
+  private isUIBlocked = new BehaviorSubject<boolean>(false);
   isUIBlocedObj = this.isUIBlocked.asObservable();
 
   setIsUIBlocked(data: boolean) {

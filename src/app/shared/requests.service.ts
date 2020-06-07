@@ -71,7 +71,7 @@ export class RequestsService {
   handleError(error: HttpErrorResponse) {
     this.commonData.setIsUIBlocked(false);
     if (error.status === 401 || error.status === 405) {
-      sessionStorage.clear();
+      localStorage.clear();
       this.router.navigate(['/login']);
     }
     return throwError(error);
