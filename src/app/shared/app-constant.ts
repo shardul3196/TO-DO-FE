@@ -10,4 +10,5 @@ export
     public INIT_TASK = SERVICE_URL + '/init-task';
     public SEARCH_TASK = SERVICE_URL + '/search-task';
     public UPDATE_TASK = SERVICE_URL + '/update-task';
+    public ADD_TASK = SERVICE_URL + '/add-task';
 }

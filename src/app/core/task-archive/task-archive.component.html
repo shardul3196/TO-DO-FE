@@ -73,7 +73,7 @@
     </form>
     <!-- *ngFor="let task of taskList" -->
     <div class="row card-group">
-        <div class="col-4" *ngFor="let task of taskList">
+        <div class="col-4 mt-2" *ngFor="let task of taskList">
             <div class="card" style="width: 18rem;" [ngStyle]="{'border-color': colors[task.colorCode-1]}">
                 <div class="card-header text-center" style="color:white" [ngStyle]="{'background-color': colors[task.colorCode-1]}">
                     {{task.title}}
