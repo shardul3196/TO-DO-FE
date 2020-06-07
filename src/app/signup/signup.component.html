@@ -12,7 +12,8 @@
             <input autocomplete="new-password" required [(ngModel)]="signUpObj.contact" type="text" class=""
                 name="login" placeholder="Contact"> -->
             <input [disabled]="!signupForm.valid" type="button" (click)="submit()" class="" value="Sign Up">
-            <a routerLink="/login" class="mt-5">Go to Login</a>
+
         </form>
+        <a routerLink="/login" class="mb-2">Go to Login</a>
     </div>
 </div>

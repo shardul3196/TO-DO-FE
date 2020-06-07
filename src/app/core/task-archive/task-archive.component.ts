@@ -15,15 +15,18 @@ export class TaskArchiveComponent implements OnInit {
     title: null,
     fromEndDate: null,
     toEndDate: null,
-    status: 3,
+    status: null,
     colorCode: null,
     orderBy: 'endDate',
     sortType: 'desc',
     tag: null
   };
 
+
   public taskList: any[];
   public taskStatus: any[];
+  public colors: any[];
+  public status: any[];
   public taskColor: any[];
   public taskTag: any[];
   public orderBy = 'endDate';
@@ -53,17 +56,31 @@ export class TaskArchiveComponent implements OnInit {
 
   ngOnInit() {
 
-
+    this.colors = [];
+    this.status = [];
 
     this.request.getData(this.constants.INIT_TASK).subscribe(data => {
       if (data.responseStatus === 'SUCCESS') {
         this.taskColor = data.response.col;
         this.taskTag = data.response.tag;
         this.taskStatus = data.response.status;
+
+        this.taskColor.forEach(item => {
+          this.colors.push(item.generalName);
+        });
+
+        this.taskStatus.forEach(item => {
+          this.status.push(item.generalName);
+        });
+
+        this.getTasks();
       }
     }, error => {
       this.notify.errorMessageByString('Some error occurred');
     });
+
+
+
   }
 
   getTasks() {
@@ -102,6 +119,51 @@ export class TaskArchiveComponent implements OnInit {
       this.searchTaskObj.sortType = 'desc';
     }
     this.sortType = !this.sortType;
+    this.getTasks();
   }
 
+  selectOrderBy(data: string) {
+    this.searchTaskObj.orderBy = data;
+    this.getTasks();
+  }
+
+  changeStatus(taskId) {
+
+    const task = this.taskList.filter(item => item.taskId == taskId)[0];
+
+    task.status = +task.status + 1;
+    task.updatedDate = new Date();
+
+    this.request.postData(this.constants.UPDATE_TASK, task).subscribe(data => {
+      if (data.responseStatus === 'SUCCESS') {
+        this.notify.message('Tasks updated');
+        this.getTasks();
+      } else {
+        this.notify.errorMessageByString('Tasks cannot be updated');
+      }
+    }, error => {
+      this.notify.errorMessageByString('Some error occurred');
+    });
+
+  }
+
+  deleteTask(taskId) {
+
+    const task = this.taskList.filter(item => item.taskId == taskId)[0];
+
+    task.status = 4;
+    task.updatedDate = new Date();
+
+    this.request.postData(this.constants.UPDATE_TASK, task).subscribe(data => {
+      if (data.responseStatus === 'SUCCESS') {
+        this.notify.message('Tasks updated');
+        this.getTasks();
+      } else {
+        this.notify.errorMessageByString('Tasks cannot be updated');
+      }
+    }, error => {
+      this.notify.errorMessageByString('Some error occurred');
+    });
+
+  }
 }
