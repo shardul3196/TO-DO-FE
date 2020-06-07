@@ -9,4 +9,5 @@ export
     public SIGNUP = SERVICE_URL + '/sign-up';
     public INIT_TASK = SERVICE_URL + '/init-task';
     public SEARCH_TASK = SERVICE_URL + '/search-task';
+    public UPDATE_TASK = SERVICE_URL + '/update-task';
 }

@@ -33,12 +33,18 @@
             <div class="form-group col-3">
                 <label for="tags">Tag</label>
                 <select class="form-control" name="tagss" [(ngModel)]="searchTaskObj.tag">
-                    <option *ngFor="let tag of taskTag" value="tag.generalId">{{tag.generalName}}</option>
+                    <option *ngFor="let tag of taskTag" [value]="tag.generalId">{{tag.generalName}}</option>
                 </select>
             </div>
-            <div class="form-group offset-sm-6 col-3">
+            <div class="form-group col-3">
+                <label for="tags">Status</label>
+                <select class="form-control" name="statuss" [(ngModel)]="searchTaskObj.status">
+                    <option *ngFor="let status of taskStatus" [value]="status.generalId">{{status.generalName}}</option>
+                </select>
+            </div>
+            <div class="form-group offset-sm-3 col-3">
                 <div class="float-right mt-5">
-                    <button type="button" class="btn btn-primary ">Search</button>
+                    <button type="button" (click)="getTasks()" class="btn btn-primary ">Search</button>
                     <button type="reset" (click)="reset()" class="btn btn-danger ml-2">Clear</button>
                 </div>
             </div>
@@ -54,7 +60,8 @@
         <div class="row">
             <div class="form-group col-3">
                 <select class="form-control" name="orderby" [(ngModel)]="orderBy">
-                    <option *ngFor="let col of cols" value="col.value">{{col.name}}</option>
+                    <option *ngFor="let col of cols" (click)="selectOrderBy(col.value)" value="col.value">{{col.name}}
+                    </option>
                 </select>
             </div>
 
@@ -66,9 +73,19 @@
     </form>
     <!-- *ngFor="let task of taskList" -->
     <div class="row card-group">
-        <div class="col-4">
-            <div class="card">
-                jodsfisjd
+        <div class="col-4" *ngFor="let task of taskList">
+            <div class="card" style="width: 18rem;" [ngStyle]="{'border-color': colors[task.colorCode-1]}">
+                <div class="card-header text-center" style="color:white" [ngStyle]="{'background-color': colors[task.colorCode-1]}">
+                    {{task.title}}
+                </div>
+                <div class="card-body text-center">
+                    <p class="card-text">Due Date: {{task.endDate}}</p>
+                    <p class="card-text">{{task.description}}</p>
+                    <p class="card-text">Status: {{status[task.status-1]}}</p>
+                    <button type="button" *ngIf="task.status==1" (click)="changeStatus(task.taskId)" class="btn btn-outline-primary btn-sm" [ngStyle]="{'border-color': colors[task.colorCode-1], 'color': colors[task.colorCode-1]}">Start</button>
+                    <button type="button" *ngIf="task.status==2" (click)="changeStatus(task.taskId)" class="btn btn-outline-primary btn-sm" [ngStyle]="{'border-color': colors[task.colorCode-1], 'color': colors[task.colorCode-1]}">Done</button>
+                    <button type="button" *ngIf="task.status!=3 && task.status!=4" (click)="deleteTask(task.taskId)" class="btn ml-2 btn-outline-primary btn-sm" [ngStyle]="{'border-color': colors[task.colorCode-1], 'color': colors[task.colorCode-1]}">Delete</button>
+                </div>
             </div>
         </div>
     </div>

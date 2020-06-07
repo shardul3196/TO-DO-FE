@@ -7,7 +7,7 @@
             <input autocomplete="new-password" required [(ngModel)]="userName" type="text" id="login" class="mt-5" name="login" placeholder="Username">
             <input autocomplete="new-password" required [(ngModel)]="password" type="password" id="password" class="" name="login" placeholder="Password">
             <input [disabled]="!loginForm.valid" type="button" (click)="submit()" class="" value="Log In">
-            <a routerLink="/signup" class="mt-5">Go to Signup</a>
         </form>
+        <a routerLink="/signup" class="mb-2">Go to Signup</a>
     </div>
 </div>
