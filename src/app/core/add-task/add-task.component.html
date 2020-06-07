@@ -1,1 +1,59 @@
-<p>add-task works!</p>
+<div class="container panel-container p-5" style="margin-top: 100px;">
+    <form>
+        <div class="row">
+            <div class="form-group col">
+                <label for="taskTitle">Task Title</label>
+                <input type="text" name="title" [(ngModel)]="addTaskObj.title" class="form-control" placeholder="Task Title">
+            </div>
+            
+            <div class="form-group col">
+                <label for="Description">Task Title</label>
+                <input type="text" name="description" [(ngModel)]="addTaskObj.description" class="form-control" placeholder="Task Description">
+            </div>
+
+            <div class="form-group col">
+                <label for="Status">Task Status</label>
+                <input type="text" name="status" [(ngModel)]="addTaskObj.status" class="form-control" placeholder="Task Status">
+            </div>
+
+            <div class="form-group col">
+                <label for="colorCode">Color</label>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" style="width: -webkit-fill-available;" [ngStyle]="{'background-color': addTaskObj.colorCode}" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Color
+                    </button>
+                    <div class="dropdown-menu" style="width: -webkit-fill-available;" aria-labelledby="dropdownMenu2">
+                        <button (click)="selectColor(color.generalName)" class="dropdown-item" *ngFor="let color of taskColor" [ngStyle]="{'background-color': color.generalName}" type="button">Color</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group col">
+                <label for="fromDueDate">From Due Date</label>
+                <input type="date" name="startDate" [(ngModel)]="addTaskObj.startDate" class="form-control" placeholder="Select Date">
+            </div>
+
+            <div class="form-group col">
+                <label for="endDate">To Due Date</label>
+                <input type="date" name="endDate" [(ngModel)]="addTaskObj.endDate" class="form-control" placeholder="Select Date">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-3">
+                <label for="tags">Tag</label>
+                <select class="form-control" name="tagss" [(ngModel)]="addTaskObj.tag">
+                    <option *ngFor="let tag of taskTag" value="tag.generalId">{{tag.generalName}}</option>
+                </select>
+            </div>
+            <div class="form-group offset-sm-6 col-3">
+                <div class="float-right mt-5">
+                    <button type="button" class="btn btn-primary" (click)="addTasks()">Add-Task</button>
+                    <button type="reset" (click)="reset()" class="btn btn-danger ml-2">Clear</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>
