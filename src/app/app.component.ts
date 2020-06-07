@@ -12,19 +12,20 @@ export class AppComponent implements OnInit {
 
   title = 'to-do-app';
 
-  public isUIBlocked: boolean;
+  public isUIBlocked = false;
 
   constructor(private commonData: CommonDataPipeService) {
-
-    commonData.isUIBlocedObj.subscribe(data => this.isUIBlocked = data);
 
   }
 
   ngOnInit(): void {
-    this.commonData.setIsUIBlocked(true);
-    setTimeout(() => {
-      this.commonData.setIsUIBlocked(false);
-    }, 1000);
+
+    this.commonData.isUIBlocedObj.subscribe(data => {
+      setTimeout(() => {
+        this.isUIBlocked = data;
+      }, 10);
+    });
+
   }
 
 }

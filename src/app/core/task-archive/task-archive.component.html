@@ -1,1 +1,75 @@
-<p>task-archive works!</p>
+<div class="container panel-container p-5" style="margin-top: 100px;">
+    <form>
+        <div class="row">
+            <div class="form-group col">
+                <label for="taskTitle">Task Title</label>
+                <input type="text" name="title" [(ngModel)]="searchTaskObj.title" class="form-control" placeholder="Task Title">
+            </div>
+
+            <div class="form-group col">
+                <label for="colorCode">Color</label>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" style="width: -webkit-fill-available;" [ngStyle]="{'background-color': searchTaskObj.colorCode}" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Color
+                    </button>
+                    <div class="dropdown-menu" style="width: -webkit-fill-available;" aria-labelledby="dropdownMenu2">
+                        <button (click)="selectColor(color.generalName)" class="dropdown-item" *ngFor="let color of taskColor" [ngStyle]="{'background-color': color.generalName}" type="button">Color</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group col">
+                <label for="fromDueDate">From Due Date</label>
+                <input type="date" name="fromEndDate" [(ngModel)]="searchTaskObj.fromEndDate" class="form-control" placeholder="Select Date">
+            </div>
+
+            <div class="form-group col">
+                <label for="colorCode">To Due Date</label>
+                <input type="date" name="toEndDate" [(ngModel)]="searchTaskObj.toEndDate" class="form-control" placeholder="Select Date">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-3">
+                <label for="tags">Tag</label>
+                <select class="form-control" name="tagss" [(ngModel)]="searchTaskObj.tag">
+                    <option *ngFor="let tag of taskTag" value="tag.generalId">{{tag.generalName}}</option>
+                </select>
+            </div>
+            <div class="form-group offset-sm-6 col-3">
+                <div class="float-right mt-5">
+                    <button type="button" class="btn btn-primary ">Search</button>
+                    <button type="reset" (click)="reset()" class="btn btn-danger ml-2">Clear</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+<div class="container panel-container mt-2 p-5">
+
+    <form>
+        <div class="row">
+            <div class="form-group col-3">
+                <select class="form-control" name="orderby" [(ngModel)]="orderBy">
+                    <option *ngFor="let col of cols" value="col.value">{{col.name}}</option>
+                </select>
+            </div>
+
+            <div class="form-group col-3">
+                <button type="button" *ngIf="sortType" (click)="toggleSortType()" class="btn btn-primary ">Ascending</button>
+                <button type="button" *ngIf="!sortType" (click)="toggleSortType()" class="btn btn-primary">Descending</button>
+            </div>
+        </div>
+    </form>
+    <!-- *ngFor="let task of taskList" -->
+    <div class="row card-group">
+        <div class="col-4">
+            <div class="card">
+                jodsfisjd
+            </div>
+        </div>
+    </div>
+</div>
