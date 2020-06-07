@@ -13,7 +13,8 @@ export const CORE_ROUTES: Route[] = [
   {
     path: '', canActivate: [AuthGuardService], canActivateChild: [AuthGuardService], component: CoreComponent, children: [
       { path: '', redirectTo: 'view-task', pathMatch: 'full' },
-      { path: 'view-task', component: TaskArchiveComponent }
+      { path: 'view-task', component: TaskArchiveComponent },
+      { path: 'add-task', component: AddTaskComponent }
     ]
   }
 ];
